@@ -8,10 +8,17 @@ function activate(context) {
 	let ipToIntCommand = vscode.commands.registerCommand('iptoint.ipToInt', async function () {
 		let conf = vscode.workspace.getConfiguration()
 		let ip = await vscode.window.showInputBox({prompt: "IP address"})
-		let converted = ipToInt(ip)
-		vscode.window.showInformationMessage(`${converted}`)
-		if (conf.get("iptoint.copyToClipboard")) {
-			vscode.env.clipboard.writeText(`${converted}`)
+		if (ip) {
+			if (validateIpAddress(ip)) {
+				let converted = ipToInt(ip)
+				vscode.window.showInformationMessage(`${converted}`)
+				if (conf.get("iptoint.copyToClipboard")) {
+					vscode.env.clipboard.writeText(`${converted}`)
+				}
+			}
+			else {
+				vscode.window.showInformationMessage(`Invalid IPv4 address`)
+			}
 		}
 	})
 
@@ -20,11 +27,19 @@ function activate(context) {
 	let intToIpCommand = vscode.commands.registerCommand('iptoint.intToIp', async function () {
 		let conf = vscode.workspace.getConfiguration()
 		let integer = await vscode.window.showInputBox({prompt: "Integer"})
-		let converted = intToIp(integer)
-		vscode.window.showInformationMessage(`${converted}`)
-		if (conf.get("iptoint.copyToClipboard")) {
-			vscode.env.clipboard.writeText(`${converted}`)	
+		if (integer) {
+			if (validateInt32(integer)) {
+				let converted = intToIp(integer)
+				vscode.window.showInformationMessage(`${converted}`)
+				if (conf.get("iptoint.copyToClipboard")) {
+					vscode.env.clipboard.writeText(`${converted}`)	
+				}
+			}
+			else {
+				vscode.window.showInformationMessage(`Invalid Int32 integer`)
+			}
 		}
+
 	})
 
 	context.subscriptions.push(intToIpCommand)
@@ -68,6 +83,22 @@ function intToIp(integer) {
 	return buf.join(".")
 }
 
+function validateIpAddress(ip) {
+	ipRegex = /\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}\b/
+	return ip ? ip.match(ipRegex) : false
+}
+
+function validateInt32(int) {
+	intRegex = /\b(-?)[0-9]{1,10}\b/
+	if (int) {
+		if (int.match(intRegex)) {
+			if (int < 2147483647 && int > -2147483647) {
+				return true
+			}
+		}
+	}
+	return false
+}
 module.exports = {
 	activate,
 	deactivate
