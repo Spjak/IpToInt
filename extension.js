@@ -1,4 +1,4 @@
-const vscode = require('vscode');
+const vscode = require('vscode')
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -13,9 +13,9 @@ function activate(context) {
 		if (conf.get("iptoint.copyToClipboard")) {
 			vscode.env.clipboard.writeText(`${converted}`)
 		}
-	});
+	})
 
-	context.subscriptions.push(ipToIntCommand);
+	context.subscriptions.push(ipToIntCommand)
 
 	let intToIpCommand = vscode.commands.registerCommand('iptoint.intToIp', async function () {
 		let conf = vscode.workspace.getConfiguration()
@@ -25,9 +25,9 @@ function activate(context) {
 		if (conf.get("iptoint.copyToClipboard")) {
 			vscode.env.clipboard.writeText(`${converted}`)	
 		}
-	});
+	})
 
-	context.subscriptions.push(intToIpCommand);
+	context.subscriptions.push(intToIpCommand)
 }
 
 function deactivate() {}
