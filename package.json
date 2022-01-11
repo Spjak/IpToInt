@@ -2,11 +2,11 @@
   "name": "iptoint",
 	"displayName": "IpToInt",
 	"description": "Converts IPv4 addresses to integers and back",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "SpjakSoftware",
 	"repository": {
 		"type": "git",
-		"directory": "https://github.com/Spjak/IpToInt"
+		"directory": "https://github.com/Spjak/IpToInt.git"
 	},
 	"engines": {
 		"vscode": "^1.63.0"
