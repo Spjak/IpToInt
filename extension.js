@@ -89,11 +89,23 @@ function validateIpAddress(ip) {
 }
 
 function validateInt32(int) {
-	intRegex = /\b(-?)[0-9]{1,10}\b/
-	if (int) {
-		if (int.match(intRegex)) {
-			if (int < 2147483647 && int > -2147483647) {
-				return true
+	if (vscode.workspace.getConfiguration().get("iptoint.sign") == "unsigned") {
+		intRegex = /\b[0-9]{1,10}\b/
+		if (int) {
+			if (int.match(intRegex)) {
+				if (int <= 4294967295) {
+					return true
+				}
+			}
+		}
+	}
+	else {
+		intRegex = /\b(-?)[0-9]{1,10}\b/
+		if (int) {
+			if (int.match(intRegex)) {
+				if (int <= 2147483647 && int >= -2147483648) {
+					return true
+				}
 			}
 		}
 	}
