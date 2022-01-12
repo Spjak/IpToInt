@@ -16,6 +16,11 @@ This setting can be toggled with `iptoint.copyToClipboard`.
 
 ## Release Notes
 
+### 1.0.0
+
+Added error handling for invalid inputs
+Improved Readme
+
 ### 0.0.1
 
 Initial release

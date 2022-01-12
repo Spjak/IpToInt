@@ -2,11 +2,12 @@
   "name": "iptoint",
 	"displayName": "IpToInt",
 	"description": "Converts IPv4 addresses to integers and back",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"publisher": "SpjakSoftware",
+	"icon": "images/icon.png",
 	"repository": {
 		"type": "git",
-		"directory": "https://github.com/Spjak/IpToInt.git"
+		"url": "https://github.com/Spjak/IpToInt"
 	},
 	"engines": {
 		"vscode": "^1.63.0"
@@ -46,9 +47,9 @@
 				},
 				"iptoint.endian": {
 					"type": "string",
-					"enum": ["bigendian", "smallendian"],
-					"default": "smallendian",
-					"description": "Specifies the endianness to use in conversion. Default is small endian"
+					"enum": ["bigendian", "littleendian"],
+					"default": "littleendian",
+					"description": "Specifies the endianness to use in conversion. Default is little endian"
 				},
 				"iptoint.sign": {
 					"type": "string",
