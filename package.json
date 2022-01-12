@@ -2,7 +2,7 @@
   "name": "iptoint",
 	"displayName": "IpToInt",
 	"description": "Converts IPv4 addresses to integers and back",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"publisher": "SpjakSoftware",
 	"icon": "images/icon.png",
 	"repository": {
